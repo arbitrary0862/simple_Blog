@@ -27,16 +27,32 @@ function check_logged_in() {
         header('Location: ../public/login.php');
         exit;
     }
+    // 單一設備登入檢查
+    checkSingleLogin();
 }
 
-// 用來清理過期的 session，防止用戶登錄其他裝置後，舊 session 還存在
-function clean_expired_sessions($pdo) {
-    $stmt = $pdo->prepare('DELETE FROM sessions WHERE expires_at < NOW()');
-    $stmt->execute();
-}
+// 單一設備登入檢查
+function checkSingleLogin() {
+    global $pdo;
+    if (isset($_SESSION['user_id']) && isset($_SESSION['session_token'])) {
+        // 查詢使用者的 session_token 是否一致
+        $stmt = $pdo->prepare('SELECT Session_Token FROM users WHERE ID = :id');
+        $stmt->execute([':id' => $_SESSION['user_id']]);
+        $user = $stmt->fetch();
 
-// 在每次頁面加載時呼叫
-// clean_expired_sessions($pdo);
+        // 如果 session_token 不一致，導回登入頁
+        if (!$user || $user['Session_Token'] !== $_SESSION['session_token']) {
+            $_SESSION['error'] = '該使用者已在其他裝置登入';
+            header('Location: login.php');
+            exit();
+        }
+    } else {
+        // 如果 session 不存在，導回登入頁
+        $_SESSION['error'] = '請先登入';
+        header('Location: login.php');
+        exit();
+    }
+}
 
 if (isset($_SESSION['error'])){ ?>
     <div class="container d-flex justify-content-center mt-5">
