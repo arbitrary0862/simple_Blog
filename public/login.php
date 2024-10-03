@@ -26,6 +26,7 @@
     <div class="mt-3 d-flex gap-2">
         <a href="register.php" class="btn btn-secondary">註冊帳號</a>
         <a href="forgot_password.php" class="btn btn-info">忘記密碼</a>
+        <a href="index.php" class="btn btn-primary">前往首頁</a>
     </div>
 </div>
 <script>
