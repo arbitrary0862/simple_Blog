@@ -1,12 +1,8 @@
 <?php
 require __DIR__ . '/../config/config.php'; // 資料庫連線設置
 
-// 確保用戶已登入
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['error'] = '請先登入';
-    header('Location: login.php');
-    exit();
-}
+// 檢查會員是否已登入
+check_logged_in();
 
 $userId = $_SESSION['user_id']; // 取得當前會員ID
 

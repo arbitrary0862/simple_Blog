@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/../../config/config.php'; // 資料庫連線設置
 
+// 檢查會員是否已登入
+check_logged_in();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_SESSION['user_id'];
     $title = $_POST['title'];

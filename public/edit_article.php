@@ -1,6 +1,9 @@
 <?php 
 require __DIR__ . '/../config/config.php'; // 資料庫連線設置
 
+// 檢查會員是否已登入
+check_logged_in();
+
 // 取得文章ID
 $articleId = $_GET['ID'];
 $stmt = $pdo->prepare('SELECT * FROM articles WHERE ID = :ID AND User_ID = :User_ID');

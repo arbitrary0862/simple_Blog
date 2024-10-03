@@ -23,7 +23,8 @@ if (session_status() == PHP_SESSION_NONE) {
 // 驗證用戶是否已登入
 function check_logged_in() {
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['session_token'])) {
-        header('Location: /../simple_blog/public/login.php');
+        $_SESSION['error'] = '請先登入';
+        header('Location: ../public/login.php');
         exit;
     }
 }

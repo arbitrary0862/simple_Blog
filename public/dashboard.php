@@ -1,6 +1,8 @@
 <?php
 require __DIR__ . '/../config/config.php';
+// 檢查會員是否已登入
 check_logged_in();
+
 $sql = "SELECT * FROM users WHERE ID = :ID";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':ID' => $_SESSION['user_id']]);

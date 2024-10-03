@@ -1,4 +1,7 @@
-<?php require __DIR__ . '/../config/config.php'; // 資料庫連線設置?>
+<?php require __DIR__ . '/../config/config.php'; // 資料庫連線設置
+// 檢查會員是否已登入
+check_logged_in();
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
