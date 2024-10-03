@@ -11,7 +11,9 @@ CREATE TABLE users (
     Email VARCHAR(255) NOT NULL UNIQUE COMMENT '會員電子郵件',
     Password VARCHAR(255) NOT NULL COMMENT '會員密碼',
     Name VARCHAR(100) NOT NULL COMMENT '會員姓名',
-    Session_Token VARCHAR(255) NULL COMMENT 'session_token',
+    Session_Token VARCHAR(255) NULL COMMENT 'Session Token',
+    Reset_Token VARCHAR(64) NULL COMMENT '重置密碼的 Token',
+    Reset_Token_Expiry DATETIME NULL COMMENT 'Token 過期時間',
     Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間',
     Updated_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改時間'
 ) COMMENT='會員資料表';
@@ -22,8 +24,8 @@ CREATE TABLE articles (
     Title VARCHAR(255) NOT NULL COMMENT '文章標題',
     Alias VARCHAR(255) UNIQUE NOT NULL COMMENT '文章別名 (用於網址識別)',
     Content TEXT NOT NULL COMMENT '文章內容',
-    Publish_Start DATE COMMENT '發佈開始日期',
-    Publish_End DATE COMMENT '發佈結束日期',
+    Publish_Start DATETIME COMMENT '發佈開始日期',
+    Publish_End DATETIME COMMENT '發佈結束日期',
     Is_Member_Only BOOLEAN DEFAULT FALSE COMMENT '是否限制會員觀看',
     View_Count INT DEFAULT 0 COMMENT '觀看次數',
     Created_At TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間',
