@@ -21,11 +21,6 @@ if ($search) {
     $params[':search'] = "%$search%";
 }
 
-// 如果未登入，只顯示非會員限定的文章
-if (!isset($_SESSION['user_id'])) {
-    $sql .= " AND is_member_only = 0";
-}
-
 $sql .= " ORDER BY publish_start DESC LIMIT :offset, :perPage";
 
 // 執行查詢
