@@ -97,6 +97,7 @@ CREATE TABLE sessions (
   - `edit_article_action.php`         # 編輯文章處理
   - `edit_profile_action.php`         # 更新會員資料處理
   - `logout_action.php`               # 登出處理
+  - `increment_view_count.php`        # 觀看次數處理
 - includes/
   - `header.php`                      # 頁面通用header
   - `footer.php`                      # 頁面通用footer

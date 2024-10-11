@@ -52,5 +52,29 @@ if (!$article) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 當頁面加載完成後，等待 3 秒後增加觀看次數
+        document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const articleId = <?= json_encode($articleId) ?>;
+            fetch('../src/actions/increment_view_count.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + encodeURIComponent(articleId)
+            }).then(response => response.json())  // 解析 JSON 回應
+              .then(data => {
+                  if (data.error) {
+                      console.error('Error:', data.error);
+                  } else {
+                      console.log(data.success || data.info);  // 成功或資訊訊息
+                  }
+              }).catch(error => {
+                  console.error('Error:', error);
+              });
+        }, 3000); // 3 秒後才發送請求
+    });
+    </script>
 </body>
 </html>
