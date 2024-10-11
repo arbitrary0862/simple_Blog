@@ -74,7 +74,7 @@ CREATE TABLE sessions (
   - `styles.css`           # 自定義樣式
 - js/
   - `scripts.js`          # 自定義 JavaScript
-- `images/`               # 圖片存放目錄
+- images/                 # 圖片存放目錄
 - `index.php`             # 首頁 (文章列表)
 - `login.php`             # 登入頁面
 - `register.php`          # 註冊頁面

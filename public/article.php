@@ -44,7 +44,7 @@ if (!$article) {
             </div>
         <?php else: ?>
             <div class="content">
-                <?= nl2br(htmlspecialchars($article['Content'])) ?>
+                <?php echo htmlspecialchars_decode($article['Content']); ?>
             </div>
         <?php endif; ?>
 

@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $publishEnd = $_POST['Publish_End'];
     $isMemberOnly = isset($_POST['Is_Member_Only']) ? 1 : 0;
     $content = $_POST['Content'];
+    $sanitizedContent = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 
     // 檢查別名是否已被其他文章使用
     $stmt = $pdo->prepare('SELECT ID FROM articles WHERE Alias = :Alias AND ID != :ID');
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->execute([
         ':Title' => $title,
         ':Alias' => $alias,
-        ':Content' => $content,
+        ':Content' => $sanitizedContent,
         ':Publish_Start' => $publishStart,
         ':Publish_End' => $publishEnd,
         ':Is_Member_Only' => $isMemberOnly,

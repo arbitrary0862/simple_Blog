@@ -27,7 +27,8 @@ if (!$article) {
             toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | link image | code', // 工具列選項
             images_upload_url: 'upload_image.php', // 圖片上傳處理 URL
             automatic_uploads: true, // 自動上傳圖片
-            height: 500 // 設定編輯器高度
+            height: 500, // 設定編輯器高度
+            document_base_url: '../',  // 指定相對於根目錄的基本 URL
         });
     </script>
 </head>
@@ -62,7 +63,7 @@ if (!$article) {
         </div>
         <button type="submit" class="btn btn-primary">儲存變更</button>
     </form>
-    <a href="dashboard.php" class="btn btn-primary">前往 Dashboard</a>
+    <a href="dashboard.php" class="btn btn-primary mt-1">前往 Dashboard</a>
 </div>
 </body>
 </html>

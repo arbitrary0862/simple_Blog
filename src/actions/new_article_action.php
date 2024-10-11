@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $publishEnd = $_POST['publish_end'];
     $isMemberOnly = isset($_POST['is_member_only']) ? 1 : 0;
     $content = $_POST['Content'];
+    $sanitizedContent = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 
     // 檢查別名是否已存在
     $stmt = $pdo->prepare('SELECT id FROM articles WHERE alias = :alias');
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ':user_id' => $userId,
         ':title' => $title,
         ':alias' => $alias,
-        ':content' => $content,
+        ':content' => $sanitizedContent,
         ':publish_start' => $publishStart,
         ':publish_end' => $publishEnd,
         ':is_member_only' => $isMemberOnly
