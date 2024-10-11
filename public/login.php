@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>登入</title>
+    <?php include  __DIR__ . '/../src/includes/header.php'; ?>
     <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php echo reCAPTCHA; ?>"></script>
 </head>
 <body>

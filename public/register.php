@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>註冊</title>
+    <?php include  __DIR__ . '/../src/includes/header.php'; ?>
 </head>
 <body>
 <div class="container mt-5">

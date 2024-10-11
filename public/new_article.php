@@ -1,12 +1,13 @@
+<?php require __DIR__ . '/../config/config.php'; // 資料庫連線設置
+    // 檢查會員是否已登入
+    check_logged_in();
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <title>新增文章</title>
-    <?php require __DIR__ . '/../config/config.php'; // 資料庫連線設置
-    // 檢查會員是否已登入
-    check_logged_in();
-    ?>
+    <?php include  __DIR__ . '/../src/includes/header.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script> <!-- 網頁編輯器 -->
     <script>
         tinymce.init({

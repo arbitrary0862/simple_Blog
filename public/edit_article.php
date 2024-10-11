@@ -1,26 +1,24 @@
+<?php 
+require __DIR__ . '/../config/config.php'; // 資料庫連線設置
+// 檢查會員是否已登入
+check_logged_in();
+// 取得文章ID
+$articleId = $_GET['ID'];
+$stmt = $pdo->prepare('SELECT * FROM articles WHERE ID = :ID AND User_ID = :User_ID');
+$stmt->execute([':ID' => $articleId, ':User_ID' => $_SESSION['user_id']]);
+$article = $stmt->fetch();
+if (!$article) {
+    $_SESSION['error'] = '文章不存在或無權編輯。';
+    header('Location: article_list.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <title>編輯文章</title>
-    <?php 
-        require __DIR__ . '/../config/config.php'; // 資料庫連線設置
-
-        // 檢查會員是否已登入
-        check_logged_in();
-
-        // 取得文章ID
-        $articleId = $_GET['ID'];
-        $stmt = $pdo->prepare('SELECT * FROM articles WHERE ID = :ID AND User_ID = :User_ID');
-        $stmt->execute([':ID' => $articleId, ':User_ID' => $_SESSION['user_id']]);
-        $article = $stmt->fetch();
-
-        if (!$article) {
-            $_SESSION['error'] = '文章不存在或無權編輯。';
-            header('Location: article_list.php');
-            exit;
-    }
-    ?>
+    <?php include  __DIR__ . '/../src/includes/header.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script> <!-- 使用 TinyMCE 網頁編輯器 -->
     <script>
         tinymce.init({

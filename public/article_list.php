@@ -60,7 +60,7 @@ $totalPages = ceil($totalArticles / $perPage);
 <head>
     <meta charset="UTF-8">
     <title>我的文章列表</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <?php include  __DIR__ . '/../src/includes/header.php'; ?>
 </head>
 <body>
     <div class="container mt-5">

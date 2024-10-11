@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>忘記密碼</title>
+    <?php include  __DIR__ . '/../src/includes/header.php'; ?>
 </head>
 <body>
 <div class="container mt-5">
