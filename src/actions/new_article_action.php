@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $publishStart = $_POST['publish_start'];
     $publishEnd = $_POST['publish_end'];
     $isMemberOnly = isset($_POST['is_member_only']) ? 1 : 0;
-    $content = $_POST['content'];
+    $content = $_POST['Content'];
 
     // 檢查別名是否已存在
     $stmt = $pdo->prepare('SELECT id FROM articles WHERE alias = :alias');
@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // 插入文章資料
-    $stmt = $pdo->prepare('INSERT INTO articles (user_id, title, alias, content, publish_start, publish_end, is_member_only) VALUES (:user_id, :title, :alias, :content, :publish_start, :publish_end, :is_member_only)');
+    $stmt = $pdo->prepare('INSERT INTO articles (User_ID, Title, Alias, Content, Publish_Start, Publish_End, Is_Member_Only) 
+                                        VALUES (:user_id, :title, :alias, :content, :publish_start, :publish_end, :is_member_only)');
     if ($stmt->execute([
         ':user_id' => $userId,
         ':title' => $title,

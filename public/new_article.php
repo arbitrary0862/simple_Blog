@@ -1,20 +1,21 @@
-<?php require __DIR__ . '/../config/config.php'; // 資料庫連線設置
-// 檢查會員是否已登入
-check_logged_in();
-?>
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <title>新增文章</title>
+    <?php require __DIR__ . '/../config/config.php'; // 資料庫連線設置
+    // 檢查會員是否已登入
+    check_logged_in();
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script> <!-- 網頁編輯器 -->
     <script>
         tinymce.init({
-            selector: '#content',
+            selector: '#Content',
             plugins: 'image code',
-            toolbar: 'undo redo | link image | code',
+            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | link image | code', // 工具列選項
             images_upload_url: 'upload_image.php', // 圖片上傳處理
-            automatic_uploads: true
+            automatic_uploads: true,
+            height: 500 // 設定編輯器高度
         });
     </script>
 </head>
@@ -43,8 +44,8 @@ check_logged_in();
             <input type="checkbox" id="is_member_only" name="is_member_only">
         </div>
         <div class="mb-3">
-            <label for="content" class="form-label">內容</label>
-            <textarea id="content" name="content" class="form-control"></textarea>
+            <label for="Content" class="form-label">內容</label>
+            <textarea id="Content" name="Content" class="form-control"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">新增文章</button>
     </form>
