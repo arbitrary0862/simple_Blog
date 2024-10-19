@@ -21,6 +21,17 @@
         </div>
         <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
         <button type="submit" class="btn btn-primary">登入</button>
+        <?php
+        // Line登入功能
+        $line_login_url = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code';
+        $line_login_url .= '&client_id=' . urlencode(LINE_CHANNEL_ID); // LINE Channel ID
+        $line_login_url .= '&redirect_uri=' . urlencode('https://127.0.0.1/simple_blog/src/actions/line_callback.php'); // 回調 URL
+        $line_login_url .= '&state=' . urlencode(bin2hex(random_bytes(16))); // 防止 CSRF 攻擊的隨機數
+        $line_login_url .= '&scope=profile%20openid%20email'; // 要求的權限
+        
+        // 生成登錄按鈕
+        echo '<a href="' . $line_login_url . '" class="btn btn-success">使用 LINE 登入</a>';
+        ?>
     </form>
     <div class="mt-3 d-flex gap-2">
         <a href="register.php" class="btn btn-secondary">註冊帳號</a>
